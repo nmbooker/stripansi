@@ -69,6 +69,7 @@ or send me a pull request.
 
 # Copyright
 
+```
 Strip terminal ANSI colour sequences out of input.
 
 Copyright (C) 2013-2014     Nicholas Martin Booker <NMBooker@gmail.com>
@@ -85,3 +86,4 @@ GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
+```
