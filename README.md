@@ -42,19 +42,21 @@ This currently only deals with the most common ones output by
 Unix programs that want to colour their output on screen, namely the
 `ESC <blah> m` sequences
 
-However it should be quite easy to extend to other types - you just
-need to modify the following pattern to match any of a set of letters
-rather than just 'm':
+However it should be quite easy to extend to other types - you can
+add patterns to drop other terminating letters and switch back to
+InText state.
 
 ```
-rescs    ('m':xs)         True             = rescs xs False
+stateMachine InANSICode ('d':xs) =
+    stateMachine InText xs
 ```
 
 Also if your platform uses something other than ESC to begin the
 escape sequences, change the following line to suit:
 
 ```
-rescs    ('\x1b':xs)      False            = rescs xs True
+stateMachine InText ('\x1b':xs) =
+    stateMachine InANSICode xs
 ```
 
 # Bugs
