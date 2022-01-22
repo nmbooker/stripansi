@@ -35,12 +35,12 @@ rmescs xs = rescs InText xs
 rescs :: State -> String -> String
 rescs _ [] =
     []
-rescs InANSICode ('m':xs) =
-    rescs InText xs
-rescs InANSICode (x:xs) =
-    rescs InANSICode xs
 rescs InText ('\x1b':xs) =
     rescs InANSICode xs
 rescs InText (x:xs) =
     x:(rescs InText xs)
+rescs InANSICode ('m':xs) =
+    rescs InText xs
+rescs InANSICode (x:xs) =
+    rescs InANSICode xs
 
