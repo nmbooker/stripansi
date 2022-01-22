@@ -10,11 +10,11 @@ data State = InText | InANSICode
 removeANSIColourCodes :: String -> String
 removeANSIColourCodes = stateMachine InText
 
--- An ANSI colour code is "\x1b" ++ some_numeric_string ++ "m"
+-- An ANSI colour code is "\x1b[" ++ some_numeric_string ++ "m"
 stateMachine :: State -> String -> String
 stateMachine _ [] =
     []
-stateMachine InText ('\x1b':xs) =
+stateMachine InText ('\x1b':'[':xs) =
     stateMachine InANSICode xs
 stateMachine InText (x:xs) =
     x:(stateMachine InText xs)

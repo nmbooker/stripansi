@@ -40,7 +40,7 @@ Watch the output to see where cabal put the compiled executable
 
 The worst limitation is that stripansi assumes that any instance of the
 ESC character in your input text is the start of a colour command.
-Therefore if you have a spurious ESC character and no 'm' later, the rest
+Therefore if you have a spurious `ESC` `[` sequence and no 'm' later, the rest
 of your text will be thrown away.
 
 This currently only deals with the most common ones output by
@@ -60,7 +60,7 @@ Also if your platform uses something other than ESC to begin the
 escape sequences, change the following line to suit:
 
 ```
-stateMachine InText ('\x1b':xs) =
+stateMachine InText ('\x1b':'[':xs) =
     stateMachine InANSICode xs
 ```
 
