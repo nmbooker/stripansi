@@ -1,7 +1,7 @@
 -- Strip ansi colour escape sequences from stdin.
 -- output is on stdout
 
-main = interact $ removeANSIColourCodes
+main = interact removeANSIColourCodes
 
 data State = InText | InANSICode
 
