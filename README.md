@@ -13,28 +13,26 @@ $ dirty | stripansi > cleaned_up_output.txt
 
 ## Compiling
 
-### Install Glasgow Haskell Compiler and Make
+### Install Glasgow Haskell Compiler and cabal-install
 
-You need 'ghc' and 'make' installed.
+You need 'ghc' and 'cabal-install' installed
 
 ```
-$ sudo apt-get install ghc cabal-install make
+$ sudo apt-get install ghc cabal-install
 ```
 
 If you find it's missing libraries, you might have to go the whole
 hog and install the haskell-platform:
 
 ```
-$ sudo apt-get install haskell-platform cabal-install make
+$ sudo apt-get install haskell-platform cabal-install
 ```
 
 ### Make it
 
 ```
-$ make clean all
+$ cabal v2-build
 ```
-
-If developing, just run `make` to save compiling dependencies every time.
 
 Watch the output to see where cabal put the compiled executable
 
