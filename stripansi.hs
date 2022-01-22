@@ -23,13 +23,13 @@
 -- We only want to keep the characters that are outside such a sequence.
 
 
-main = interact $ rmescs
+main = interact $ removeANSIColourCodes
 
 data State = InText | InANSICode
 
 -- rmescs just starts off rescs.  When we start, we're not in an escape sequence.
-rmescs :: String -> String
-rmescs xs = rescs InText xs
+removeANSIColourCodes :: String -> String
+removeANSIColourCodes xs = rescs InText xs
 
 
 rescs :: State -> String -> String
