@@ -1,6 +1,7 @@
 -- Strip ansi colour escape sequences from stdin.
 -- output is on stdout
 
+main :: IO ()
 main = interact removeANSIColourCodes
 
 data State = InText | InANSICode
