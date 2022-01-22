@@ -3,20 +3,14 @@
 
 ---------------------------------------------------------------------------
 
--- Ansi escape sequences start with an ESC (0x1b) character, and end with an m
--- So we want to drop the ESC, and all following characters up to and including the next 'm'
--- We only want to keep the characters that are outside such a sequence.
-
-
 main = interact $ removeANSIColourCodes
 
 data State = InText | InANSICode
 
--- rmescs just starts off stateMachine.  When we start, we're not in an escape sequence.
 removeANSIColourCodes :: String -> String
 removeANSIColourCodes xs = stateMachine InText xs
 
-
+-- An ANSI colour code is "\x1b" ++ some_numeric_string ++ "m"
 stateMachine :: State -> String -> String
 stateMachine _ [] =
     []
