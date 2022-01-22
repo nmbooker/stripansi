@@ -27,20 +27,20 @@ main = interact $ removeANSIColourCodes
 
 data State = InText | InANSICode
 
--- rmescs just starts off rescs.  When we start, we're not in an escape sequence.
+-- rmescs just starts off stateMachine.  When we start, we're not in an escape sequence.
 removeANSIColourCodes :: String -> String
-removeANSIColourCodes xs = rescs InText xs
+removeANSIColourCodes xs = stateMachine InText xs
 
 
-rescs :: State -> String -> String
-rescs _ [] =
+stateMachine :: State -> String -> String
+stateMachine _ [] =
     []
-rescs InText ('\x1b':xs) =
-    rescs InANSICode xs
-rescs InText (x:xs) =
-    x:(rescs InText xs)
-rescs InANSICode ('m':xs) =
-    rescs InText xs
-rescs InANSICode (x:xs) =
-    rescs InANSICode xs
+stateMachine InText ('\x1b':xs) =
+    stateMachine InANSICode xs
+stateMachine InText (x:xs) =
+    x:(stateMachine InText xs)
+stateMachine InANSICode ('m':xs) =
+    stateMachine InText xs
+stateMachine InANSICode (x:xs) =
+    stateMachine InANSICode xs
 
