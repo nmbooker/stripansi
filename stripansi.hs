@@ -25,14 +25,17 @@
 
 main = interact $ rmescs
 
+data State = InText | InANSICode
+
 -- rmescs just starts off rescs.  When we start, we're not in an escape sequence.
 rmescs :: String -> String
-rmescs xs = rescs False xs
+rmescs xs = rescs InText xs
 
-rescs :: Bool -> String -> String
+
+rescs :: State -> String -> String
 rescs _ [] = []
-rescs True ('m':xs) = rescs False xs
-rescs True (x:xs) = rescs True xs
-rescs False ('\x1b':xs) = rescs True xs
-rescs False (x:xs) = x:(rescs False xs)
+rescs InANSICode ('m':xs) = rescs InText xs
+rescs InANSICode (x:xs) = rescs InANSICode xs
+rescs InText ('\x1b':xs) = rescs InANSICode xs
+rescs InText (x:xs) = x:(rescs InText xs)
 
