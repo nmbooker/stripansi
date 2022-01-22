@@ -1,7 +1,9 @@
 all: stripansi
 
-stripansi: stripansi.hs
-	ghc -Wall --make stripansi.hs
+stripansi:
+	cabal v2-build
 
 clean:
-	$(RM) stripansi stripansi.o stripansi.hi
+	$(RM) -r stripansi dist-newstyle
+
+.PHONY: clean stripansi

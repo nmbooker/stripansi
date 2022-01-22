@@ -1,3 +1,4 @@
+module Main where
 -- Strip ansi colour escape sequences from stdin.
 -- output is on stdout
 
