@@ -27,12 +27,12 @@ main = interact $ rmescs
 
 -- rmescs just starts off rescs.  When we start, we're not in an escape sequence.
 rmescs :: String -> String
-rmescs xs = rescs xs False
+rmescs xs = rescs False xs
 
-rescs :: String -> Bool -> String
-rescs [] _ = []
-rescs ('m':xs) True = rescs xs False
-rescs (x:xs) True = rescs xs True
-rescs ('\x1b':xs) False = rescs xs True
-rescs (x:xs) False = x:(rescs xs False)
+rescs :: Bool -> String -> String
+rescs _ [] = []
+rescs True ('m':xs) = rescs False xs
+rescs True (x:xs) = rescs True xs
+rescs False ('\x1b':xs) = rescs True xs
+rescs False (x:xs) = x:(rescs False xs)
 
