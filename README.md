@@ -8,7 +8,7 @@ Assuming 'dirty' is a program that insists on spitting out ANSI escape
 characters even in pipelines.
 
 ```
-$ dirty | ./stripansi > cleaned_up_output.txt
+$ dirty | stripansi > cleaned_up_output.txt
 ```
 
 ## Compiling
@@ -18,14 +18,14 @@ $ dirty | ./stripansi > cleaned_up_output.txt
 You need 'ghc' and 'make' installed.
 
 ```
-$ sudo apt-get install ghc make
+$ sudo apt-get install ghc cabal-install make
 ```
 
 If you find it's missing libraries, you might have to go the whole
 hog and install the haskell-platform:
 
 ```
-$ sudo apt-get install haskell-platform make
+$ sudo apt-get install haskell-platform cabal-install make
 ```
 
 ### Make it
@@ -35,6 +35,8 @@ $ make clean all
 ```
 
 If developing, just run `make` to save compiling dependencies every time.
+
+Watch the output to see where cabal put the compiled executable
 
 ## Limitations
 
