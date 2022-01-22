@@ -38,6 +38,11 @@ If developing, just run `make` to save compiling dependencies every time.
 
 ## Limitations
 
+The worst limitation is that stripansi assumes that any instance of the
+ESC character in your input text is the start of a colour command.
+Therefore if you have a spurious ESC character and no 'm' later, the rest
+of your text will be thrown away.
+
 This currently only deals with the most common ones output by
 Unix programs that want to colour their output on screen, namely the
 `ESC <blah> m` sequences
