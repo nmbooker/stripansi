@@ -1,7 +1,7 @@
 -- Strip ansi colour escape sequences from stdin.
 -- output is on stdout
 --
--- Copyright (c) 2014 Nicholas Martin Booker <NMBooker@gmail.com>
+-- Copyright (c) 2022 Nicholas Martin Booker <NMBooker@gmail.com>
 -- 
 -- This program is free software: you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
@@ -30,10 +30,9 @@ rmescs :: String -> String
 rmescs xs = rescs xs False
 
 rescs :: String -> Bool -> String
---       remaining_chars  in_esc_sequence
-rescs    []               _                = []
-rescs    ('m':xs)         True             = rescs xs False
-rescs    (x:xs)           True             = rescs xs True
-rescs    ('\x1b':xs)      False            = rescs xs True
-rescs    (x:xs)           False            = x:(rescs xs False)
+rescs [] _ = []
+rescs ('m':xs) True = rescs xs False
+rescs (x:xs) True = rescs xs True
+rescs ('\x1b':xs) False = rescs xs True
+rescs (x:xs) False = x:(rescs xs False)
 
