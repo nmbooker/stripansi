@@ -8,7 +8,7 @@ main = interact $ removeANSIColourCodes
 data State = InText | InANSICode
 
 removeANSIColourCodes :: String -> String
-removeANSIColourCodes xs = stateMachine InText xs
+removeANSIColourCodes = stateMachine InText
 
 -- An ANSI colour code is "\x1b" ++ some_numeric_string ++ "m"
 stateMachine :: State -> String -> String
