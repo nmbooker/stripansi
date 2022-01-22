@@ -19,7 +19,7 @@ stateMachine InText (x:xs) =
     x:(stateMachine InText xs)
 stateMachine InANSICode ('m':xs) =
     stateMachine InText xs
-stateMachine InANSICode (x:xs) =
+stateMachine InANSICode (_:xs) =
     stateMachine InANSICode xs
 
 
